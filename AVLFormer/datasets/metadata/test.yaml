@@ -1,0 +1,5 @@
+caption: test.caption.tsv
+caption_coco_format: test.caption_coco_format.json
+caption_linelist: test.caption.linelist.tsv
+img: test.img.tsv
+label: test.label.tsv

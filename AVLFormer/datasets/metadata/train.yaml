@@ -1,0 +1,5 @@
+caption: train.caption.tsv
+caption_coco_format: train.caption_coco_format.json
+caption_linelist: train.caption.linelist.tsv
+img: train.img.tsv
+label: train.label.tsv

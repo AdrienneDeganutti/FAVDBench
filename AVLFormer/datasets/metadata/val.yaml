@@ -1,0 +1,5 @@
+caption: val.caption.tsv
+caption_coco_format: val.caption_coco_format.json
+caption_linelist: val.caption.linelist.tsv
+img: val.img.tsv
+label: val.label.tsv

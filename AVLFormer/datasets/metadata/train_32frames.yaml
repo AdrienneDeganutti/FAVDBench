@@ -1,0 +1,6 @@
+caption: train.caption.tsv
+caption_coco_format: train.caption_coco_format.json
+caption_linelist: train.caption.linelist.tsv
+img: frame_tsv/train_32frames.img.tsv
+label: train.label.tsv
+audio: audio_hdf/train_mp3.hdf

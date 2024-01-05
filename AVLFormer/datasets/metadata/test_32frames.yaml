@@ -1,0 +1,6 @@
+caption: test.caption.tsv
+caption_coco_format: test.caption_coco_format.json
+caption_linelist: test.caption.linelist.tsv
+img: frame_tsv/test_32frames.img.tsv
+label: test.label.tsv
+audio: audio_hdf/test_mp3.hdf

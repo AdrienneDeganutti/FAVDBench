@@ -20,7 +20,7 @@ def generate_lineidx_files(input_file, output_prefix):
             f.write(offset.to_bytes(8, 'little'))
 
 if __name__ == '__main__':
-    input_file = 'AVLFormer/datasets/metadata/val.label.tsv'
-    output_prefix = 'AVLFormer/datasets/metadata/val.label'
+    input_file = 'datasets/metadata/val.label.tsv'
+    output_prefix = 'datasets/metadata/val.label'
     generate_lineidx_files(input_file, output_prefix)
     print(f"Generated {output_prefix}.lineidx and {output_prefix}.lineidx.8b files.")

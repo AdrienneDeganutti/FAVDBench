@@ -14,6 +14,8 @@ import os
 import os.path as op
 import time
 
+import wandb
+
 from apex import amp
 from apex.parallel import DistributedDataParallel as DDP
 import deepspeed
@@ -150,6 +152,11 @@ def mixed_precision_init(args, model):
 
 def train(args, train_dataloader, val_dataloader, model, tokenizer,
           training_saver, optimizer, scheduler):
+    
+    # Initialize wandb
+    if args.rank == 0:
+        wandb.init(project="FAVDBench", name="training_exp3")
+
     meters = MetricLogger(delimiter='  ')
     max_iter = args.max_iter
     max_global_step = args.max_global_step
@@ -278,6 +285,17 @@ def train(args, train_dataloader, val_dataloader, model, tokenizer,
                 optimizer.zero_grad()
             restorer.step()
 
+            #Add weights and biases logging
+            if args.rank == 0:
+                wandb.log({
+                    "Training Loss": running_loss.val,
+                    "Accuracy": running_batch_acc.val,
+                }, step=global_step)
+
+            TB_LOGGER.add_scalar("train/loss", running_loss.val, global_step)
+            TB_LOGGER.add_scalar("train/acc", running_batch_acc.val, global_step)
+            log_start = time.time()
+
         batch_time = time.time() - end
 
         if backward_now:
@@ -307,8 +325,7 @@ def train(args, train_dataloader, val_dataloader, model, tokenizer,
                     ]))
                 TB_LOGGER.add_scalar("train/speed", speed, global_step)
                 TB_LOGGER.add_scalar("train/memory", memory, global_step)
-                TB_LOGGER.add_scalar("train/batch_time", batch_time,
-                                     global_step)
+                TB_LOGGER.add_scalar("train/batch_time", batch_time, global_step)
                 TB_LOGGER.add_scalar("train/data_time", data_time, global_step)
                 log_start = time.time()
 
@@ -371,6 +388,10 @@ def train(args, train_dataloader, val_dataloader, model, tokenizer,
     logger.info(
         f'Total training time: {total_time_str} ({(total_training_time / max_iter):.4f} s / iter)'
     )
+
+    # Finish the Weights & Biases run
+    wandb.finish()
+
     return checkpoint_dir
 
 

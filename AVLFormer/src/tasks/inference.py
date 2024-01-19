@@ -105,7 +105,8 @@ def update_existing_config_for_inference(args):
     assert args.do_test or args.do_eval
     checkpoint = args.eval_model_dir
     try:
-        json_path = op.join(checkpoint, os.pardir, 'log', 'args.json')
+        #json_path = op.join(checkpoint, os.pardir, 'log', 'args.json')
+        json_path = op.join(checkpoint, 'log', 'args.json')
         f = open(json_path, 'r')
         json_data = json.load(f)
 
@@ -177,6 +178,7 @@ def batch_inference(args, video_path, audio_path, model, tokenizer,
 
     model.float()
     model.eval()
+
     for video in os.listdir(video_path):
         if video.split('.')[-1] == 'mp4':
             v_path = os.path.join(video_path, video)
@@ -198,6 +200,8 @@ def batch_inference(args, video_path, audio_path, model, tokenizer,
             data_sample = tuple(t.to(args.device) for t in data_sample)
 
             with torch.no_grad():
+
+                inputs = None
 
                 inputs = {
                     'is_decode': True,

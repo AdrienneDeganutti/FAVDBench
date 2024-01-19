@@ -4,13 +4,12 @@ src/evalcap/coco_caption
 src/evalcap/coco_caption/*
 src/evalcap/coco-caption
 src/evalcap/coco-caption/*
+src/modeling/passt/passt-s-f128-p16-s10-ap.476-swa.pt
 
 # ignore dataset
 datasets/meta
 datasets/meta/*
-datasets/metadata
 datasets/metadata.zip
-datasets/metadata/*
 datasets/videos
 datasets/videos/*
 datasets/audios
@@ -26,6 +25,8 @@ datasets/audio_hdf/*
 
 # ignore pt models
 models/video_swin_transformer/*.pth
+models/pretrained_checkpoint/*
 
 # ignore exp output
 output
+wandb/*

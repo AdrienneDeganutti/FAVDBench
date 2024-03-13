@@ -38,7 +38,7 @@ In general, the code requires `python>=3.7`, as well as `pytorch>=1.10` and `tor
     ```bash
     git clone https://github.com/NVIDIA/apex
     cd apex
-    pip install -v --disable-pip-version-check --no-cache-dir ./
+    pip install -v --disable-pip-version-check --no-build-isolation --no-cache-dir ./
     ```
     
 6. Clone related repo for eval 
@@ -61,6 +61,11 @@ In general, the code requires `python>=3.7`, as well as `pytorch>=1.10` and `tor
       # For mac
       brew update
       brew install ffmpeg
+    ```
+8. Install PaSST
+    ```
+    cd ./AVLFormer/src/modeling/passt
+    wget https://github.com/kkoutini/PaSST/releases/download/v0.0.1-audioset/passt-s-f128-p16-s10-ap.476-swa.pt
     ```
   
 

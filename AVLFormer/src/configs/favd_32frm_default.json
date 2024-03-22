@@ -1,6 +1,6 @@
 {
     "do_train": true,
-    "evaluate_during_training": true,
+    "evaluate_during_training": false,
     "data_dir": "datasets",
     "train_yaml": "metadata/train_32frames.yaml",
     "val_yaml": "metadata/val_32frames.yaml",
@@ -28,7 +28,7 @@
     "max_gen_length": 115,
     "on_memory": true,
     "use_checkpoint": true,
-    "num_train_epochs": 150,
+    "num_train_epochs": 1,
     "learning_rate": 0.0001,
     "backbone_coef_lr": 0.05,
     "scheduler": "warmup_linear",
